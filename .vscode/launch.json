@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SmartpassApplication<smartpass-piura>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "pe.smartpass.SmartpassApplication",
+            "projectName": "smartpass-piura",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel administrativo · SmartPass Piura</title>
+  <link rel="stylesheet" href="/FrontEnd/css/styles.css">
+</head>
+<body>
+  <header><h1>Panel administrativo · <span id="usuarioActual"></span></h1><button onclick="cerrarSesion()">Salir</button></header>
+  <main>
+    <div class="tarjeta">
+      <h2>Reporte de recaudación</h2>
+      <div class="fila">
+        <div><label for="fechaInicio">Desde</label><input id="fechaInicio" type="date"></div>
+        <div><label for="fechaFin">Hasta</label><input id="fechaFin" type="date"></div>
+        <div><label for="unidad">Unidad</label><select id="unidad"><option value="">Todas</option></select></div>
+        <div><label for="ruta">Ruta</label><select id="ruta"><option value="">Todas</option></select></div>
+      </div>
+      <button class="principal" id="btnGenerar" type="button">Generar reporte</button>
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="resumen">
+        <div><strong id="total">S/ 0.00</strong>Recaudación total</div>
+        <div><strong id="transacciones">0</strong>Transacciones</div>
+        <div><strong id="pasajeros">0</strong>Pasajeros registrados</div>
+      </div>
+    </div>
+
+    <div class="tarjeta"><h2>Por día</h2>
+      <table><thead><tr><th>Fecha</th><th>Transacciones</th><th>Monto</th></tr></thead><tbody id="porDia"></tbody></table></div>
+    <div class="tarjeta"><h2>Por unidad</h2>
+      <table><thead><tr><th>Unidad</th><th>Placa</th><th>Transacciones</th><th>Monto</th></tr></thead><tbody id="porUnidad"></tbody></table></div>
+    <div class="tarjeta"><h2>Por ruta</h2>
+      <table><thead><tr><th>Ruta</th><th>Transacciones</th><th>Monto</th></tr></thead><tbody id="porRuta"></tbody></table></div>
+  </main>
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

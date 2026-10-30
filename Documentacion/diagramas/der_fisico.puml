@@ -1,0 +1,88 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+hide circle
+skinparam linetype ortho
+
+entity "usuario" as usuario {
+  * id_usuario : SERIAL <<PK>>
+  --
+  nom_usuario : VARCHAR(45) NOT NULL
+  ape_paterno : VARCHAR(45) NOT NULL
+  ape_materno : VARCHAR(45) NOT NULL
+  dni : VARCHAR(8) NOT NULL UNIQUE
+  celular : VARCHAR(9) NOT NULL
+  clave : VARCHAR(150) NOT NULL
+  saldo_actual : NUMERIC(8,2) NOT NULL DEFAULT 0
+  codigo_qr : VARCHAR(150) UNIQUE
+  estado : SMALLINT NOT NULL DEFAULT 1
+  fec_creacion : TIMESTAMP NOT NULL DEFAULT now()
+  fec_modificacion : TIMESTAMP
+}
+entity "perfil" as perfil {
+  * id_perfil : SERIAL <<PK>>
+  --
+  nom_perfil : VARCHAR(45) NOT NULL
+  estado : SMALLINT NOT NULL DEFAULT 1
+}
+entity "empleado" as empleado {
+  * id_empleado : SERIAL <<PK>>
+  --
+  # id_perfil : INTEGER <<FK>> NOT NULL
+  nom : VARCHAR(55) NOT NULL
+  ape_paterno : VARCHAR(45) NOT NULL
+  ape_materno : VARCHAR(45) NOT NULL
+  dni : VARCHAR(8) NOT NULL UNIQUE
+  clave : VARCHAR(150) NOT NULL
+  fec_nac : DATE
+  direccion : VARCHAR(150)
+  estado : SMALLINT NOT NULL DEFAULT 1
+  fec_creacion : TIMESTAMP NOT NULL DEFAULT now()
+  fec_modificacion : TIMESTAMP
+}
+entity "ruta" as ruta {
+  * id_ruta : SERIAL <<PK>>
+  --
+  nom_ruta : VARCHAR(60) NOT NULL
+  origen : VARCHAR(60) NOT NULL
+  destino : VARCHAR(60) NOT NULL
+  estado : SMALLINT NOT NULL DEFAULT 1
+}
+entity "unidad" as unidad {
+  * id_unidad : SERIAL <<PK>>
+  --
+  # id_ruta : INTEGER <<FK>> NOT NULL
+  placa : VARCHAR(10) NOT NULL UNIQUE
+  nom_unidad : VARCHAR(45) NOT NULL
+  capacidad : SMALLINT NOT NULL
+  estado : SMALLINT NOT NULL DEFAULT 1
+}
+entity "recarga" as recarga {
+  * id_recarga : SERIAL <<PK>>
+  --
+  # id_usuario : INTEGER <<FK>> NOT NULL
+  monto : NUMERIC(8,2) NOT NULL
+  metodo_simulado : VARCHAR(30) NOT NULL
+  estado : SMALLINT NOT NULL DEFAULT 1
+  fec_recarga : TIMESTAMP NOT NULL DEFAULT now()
+}
+entity "transaccion" as transaccion {
+  * id_transaccion : SERIAL <<PK>>
+  --
+  # id_usuario : INTEGER <<FK>> NOT NULL
+  # id_empleado : INTEGER <<FK>> NOT NULL
+  # id_unidad : INTEGER <<FK>> NOT NULL
+  monto : NUMERIC(8,2) NOT NULL
+  fec_transaccion : DATE NOT NULL DEFAULT CURRENT_DATE
+  hora_transaccion : TIME NOT NULL DEFAULT CURRENT_TIME
+  estado : SMALLINT NOT NULL DEFAULT 1
+}
+
+usuario ||--o{ recarga : "id_usuario"
+usuario ||--o{ transaccion : "id_usuario"
+empleado ||--o{ transaccion : "id_empleado"
+unidad ||--o{ transaccion : "id_unidad"
+ruta ||--o{ unidad : "id_ruta"
+perfil ||--o{ empleado : "id_perfil"
+@enduml

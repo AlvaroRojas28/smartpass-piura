@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+actor Pasajero
+participant "Servicio: PagoService" as PS
+participant "Vista: Portal Web" as Vista
+participant "Controlador: TransaccionController" as Controlador
+participant "Servicio: TransaccionService" as Servicio
+participant "DAO: TransaccionDAO" as TDAO
+participant "DAO: UsuarioDAO" as UDAO
+
+group Registro de la transacción (tras un pago aprobado)
+  PS -> Servicio : registrarTransaccion(transaccion)
+  Servicio -> TDAO : guardarTransaccion(transaccion)
+  TDAO --> Servicio : transacción guardada
+  Servicio --> PS : transacción registrada
+end
+
+group Consulta del historial
+  Pasajero -> Vista : Solicita su historial de viajes
+  Vista -> Controlador : obtenerHistorial(idUsuario)
+  Controlador -> Servicio : listarHistorial(idUsuario)
+  Servicio -> TDAO : listarPorUsuario(idUsuario)
+  TDAO --> Servicio : lista de transacciones
+  Servicio -> UDAO : obtenerSaldoUsuario(idUsuario)
+  UDAO --> Servicio : saldoActual
+  Servicio --> Controlador : historial y saldo
+  Controlador --> Vista : historial y saldo
+  Vista --> Pasajero : muestra historial y saldo
+end
+@enduml

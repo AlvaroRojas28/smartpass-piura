@@ -1,0 +1,95 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+skinparam classAttributeIconSize 0
+
+class Usuario {
+  - idUsuario : int
+  - nomUsuario : String
+  - apePaterno : String
+  - apeMaterno : String
+  - dni : String
+  - celular : String
+  - clave : String
+  - saldoActual : BigDecimal
+  - codigoQR : String
+  - estado : int
+  - fecCreacion : LocalDate
+  - fecModificacion : LocalDate
+  --
+  + registrarUsuario() : boolean
+  + recargarSaldo(monto : BigDecimal) : boolean
+  + generarCodigoQR() : String
+  + consultarSaldo() : BigDecimal
+  + consultarHistorial() : List<Transaccion>
+}
+class Perfil {
+  - idPerfil : int
+  - nomPerfil : String
+  - estado : int
+  --
+  + listarEmpleados() : List<Empleado>
+}
+class Empleado {
+  - idEmpleado : int
+  - nom : String
+  - apePaterno : String
+  - apeMaterno : String
+  - dni : String
+  - clave : String
+  - fecNac : LocalDate
+  - direccion : String
+  - estado : int
+  - fecCreacion : LocalDate
+  - fecModificacion : LocalDate
+  --
+  + validarPago(codigoQR : String) : Transaccion
+  + generarReporteRecaudacion() : Reporte
+}
+class Ruta {
+  - idRuta : int
+  - nomRuta : String
+  - origen : String
+  - destino : String
+  - estado : int
+  --
+  + listarUnidades() : List<Unidad>
+}
+class Unidad {
+  - idUnidad : int
+  - placa : String
+  - nomUnidad : String
+  - capacidad : int
+  - estado : int
+  --
+  + registrarTransaccion(t : Transaccion) : boolean
+}
+class Recarga {
+  - idRecarga : int
+  - monto : BigDecimal
+  - metodoSimulado : String
+  - estado : int
+  - fecRecarga : LocalDate
+  --
+  + procesarRecarga() : boolean
+}
+class Transaccion {
+  - idTransaccion : int
+  - monto : BigDecimal
+  - fecTransaccion : LocalDate
+  - horaTransaccion : LocalTime
+  - estado : int
+  --
+  + validarSaldo() : boolean
+  + descontarSaldo() : boolean
+  + registrar() : boolean
+}
+
+Usuario "1" -- "0..*" Recarga : realiza >
+Usuario "1" -- "0..*" Transaccion : realiza >
+Empleado "1" -- "0..*" Transaccion : valida >
+Unidad "1" -- "0..*" Transaccion : registra >
+Ruta "1" -- "0..*" Unidad : contiene >
+Perfil "1" -- "0..*" Empleado : asigna >
+@enduml

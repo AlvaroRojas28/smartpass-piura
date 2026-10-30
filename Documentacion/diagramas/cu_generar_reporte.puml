@@ -1,0 +1,13 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+left to right direction
+actor Administrador
+rectangle "Sistema Piloto Web de Pago Digital" {
+  usecase "Generar Reporte de Recaudación" as UC6
+  usecase "Consultar Pasajeros y Transacciones" as UC6a
+}
+Administrador --> UC6
+Administrador --> UC6a
+@enduml

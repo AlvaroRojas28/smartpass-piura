@@ -1,0 +1,13 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+left to right direction
+actor Cobrador
+rectangle "Sistema Piloto Web de Pago Digital" {
+  usecase "Validar Pago con QR" as UC4
+  usecase "Verificar saldo suficiente" as UC4a
+}
+Cobrador --> UC4
+UC4 .> UC4a : <<include>>
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+left to right direction
+actor Cobrador
+actor Pasajero
+rectangle "Sistema Piloto Web de Pago Digital" {
+  usecase "Registrar Transacción" as UC5
+  usecase "Consultar Historial de Viajes" as UC5a
+}
+Cobrador --> UC5
+Pasajero --> UC5a
+@enduml

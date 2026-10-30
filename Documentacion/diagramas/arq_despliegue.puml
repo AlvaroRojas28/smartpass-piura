@@ -1,0 +1,42 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+
+skinparam defaultFontName SansSerif
+skinparam nodesep 20
+skinparam defaultFontSize 17
+skinparam ranksep 40
+
+node "Navegador del usuario\n(HTML5 · CSS3 · JavaScript)" as cli {
+  component "Portal del\nPasajero" as c1
+  component "Módulo de\nValidación (QR)" as c2
+  component "Panel\nAdministrativo" as c3
+}
+
+node "Servidor 1: Aplicación\n(Spring Boot · Java 17)" as app {
+  package "Capa de Presentación (Vista)" as pv {
+    [Archivos estáticos\nHTML / CSS / JS] as st
+  }
+  package "Capa de Negocio (Controlador y Servicios)" as pn {
+    [Controladores REST\n(Auth · Pasajero · Pago · Reporte)] as ct
+    [Servicios\n(reglas de negocio)] as sv
+    [Seguridad\nJWT + BCrypt] as sg
+  }
+  package "Capa de Acceso a Datos (Modelo / DAO)" as pd {
+    [DAO\n(Spring JDBC)] as dao
+  }
+}
+
+database "Servidor 2: Base de Datos\nPostgreSQL" as bd {
+  [usuario · recarga · transaccion\nempleado · perfil · unidad · ruta] as tb
+}
+
+c1 --> ct : HTTPS / JSON
+c2 --> ct : HTTPS / JSON
+c3 --> ct : HTTPS / JSON
+ct --> sg
+ct --> sv
+sv --> dao
+dao --> tb : JDBC (5432)
+@enduml

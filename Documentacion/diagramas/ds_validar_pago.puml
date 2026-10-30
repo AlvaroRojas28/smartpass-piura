@@ -1,0 +1,41 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+actor Cobrador
+participant "Vista: Módulo de Validación" as Vista
+participant "Controlador: PagoController" as Controlador
+participant "Servicio: PagoService" as Servicio
+participant "DAO: UsuarioDAO" as UDAO
+participant "Servicio: TransaccionService" as TS
+participant "DAO: TransaccionDAO" as TDAO
+
+Cobrador -> Vista : Escanea el código QR
+Vista -> Controlador : validarPago(codigoQR, idUnidad)
+Controlador -> Servicio : procesarPago(codigoQR, idEmpleado, idUnidad)
+Servicio -> UDAO : buscarPorCodigoQR(codigoQR)
+UDAO --> Servicio : usuario
+
+alt Código QR no encontrado
+  Servicio --> Controlador : error: código QR no válido
+  Controlador --> Vista : mensaje de error
+  Vista --> Cobrador : muestra "Código QR no válido"
+else Código QR válido
+  Servicio -> Servicio : tieneSaldoSuficiente(usuario, tarifa)
+  alt Saldo suficiente
+    Servicio -> UDAO : descontarSaldo(idUsuario, tarifa)
+    UDAO --> Servicio : saldo descontado
+    Servicio -> TS : registrarTransaccion(transaccion)
+    TS -> TDAO : guardarTransaccion(transaccion)
+    TDAO --> TS : transacción guardada
+    TS --> Servicio : transacción registrada
+    Servicio --> Controlador : pago aprobado
+    Controlador --> Vista : resultado del pago
+    Vista --> Cobrador : muestra "Pago aprobado"
+  else Saldo insuficiente
+    Servicio --> Controlador : error: saldo insuficiente
+    Controlador --> Vista : mensaje de error
+    Vista --> Cobrador : muestra "Saldo insuficiente"
+  end
+end
+@enduml

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173da8">
+  <title>Crear cuenta · SmartPass Piura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/FrontEnd/css/styles.css">
+</head>
+<body class="auth-page">
+  <header class="site-header">
+    <a class="brand-mini" href="/index.html" aria-label="SmartPass Piura, inicio">
+      <span class="brand-symbol">SP</span>
+      <span><strong>SmartPass</strong><small>PIURA DIGITAL</small></span>
+    </a>
+    <span class="municipal-tag">▥ &nbsp; Municipalidad Provincial de Piura</span>
+    <nav class="top-nav" aria-label="Navegación principal">
+      <a href="#beneficios">♧ &nbsp;Líneas y Paraderos</a>
+      <a href="#beneficios">▣ &nbsp;Tarifas</a>
+      <a href="#soporte">ⓘ &nbsp;Ayuda / Soporte</a>
+      <span class="language">🇵🇪 ES</span>
+      <a class="login-link" href="/index.html">Iniciar sesión</a>
+    </nav>
+  </header>
+
+  <main class="auth-shell">
+    <aside class="auth-aside" id="beneficios">
+      <div class="aside-content">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> SIT PIURA · MOVILIDAD DIGITAL</span>
+        <div class="brand-lockup">
+          <span class="brand-symbol brand-symbol-large">SP</span>
+          <span><strong>SmartPass Piura</strong><small>Plataforma Oficial de Transporte</small></span>
+        </div>
+        <h1>El Sistema Integrado de Transporte Digital de Piura</h1>
+        <p class="aside-intro">Crea tu pase virtual, viaja en todos los corredores metropolitanos de Piura, Castilla y Catacaos sin necesidad de monedas ni colas.</p>
+
+        <div class="benefit-list">
+          <article class="benefit-card"><span class="benefit-icon">◉</span><div><strong>Viaja sin efectivo</strong><p>Paga al instante con código QR o tarjeta inteligente vinculada.</p></div></article>
+          <article class="benefit-card"><span class="benefit-icon">↻</span><div><strong>Recarga inmediata con Yape y Plin</strong><p>Recarga tu saldo y estará disponible en segundos desde tu móvil.</p></div></article>
+          <article class="benefit-card"><span class="benefit-icon">⌖</span><div><strong>Rutas y buses en tiempo real</strong><p>Horarios exactos de llegada de buses en las troncales principales.</p></div></article>
+          <article class="benefit-card"><span class="benefit-icon">▤</span><div><strong>Tarifas preferenciales integradas</strong><p>Descuentos para estudiantes universitarios, escolares y trasbordos.</p></div></article>
+        </div>
+        <div class="aside-footer"><span>♧ &nbsp; Seguridad y respaldo municipal</span><strong>Piura Digital 2026</strong></div>
+      </div>
+    </aside>
+
+    <section class="auth-form-panel">
+      <div class="form-wrap">
+        <div class="form-kicker">♙ &nbsp; PORTAL DE REGISTRO CIUDADANO</div>
+        <h2>Crear cuenta nueva</h2>
+        <p class="form-description">Regístrate para gestionar tus pasajes, tarjetas de transporte y consultar tus movimientos.</p>
+
+        <form id="registroForm" novalidate>
+          <div class="field-group">
+            <label for="nomUsuario">Nombres completos</label>
+            <div class="input-wrap"><span class="input-icon">♙</span><input id="nomUsuario" name="nomUsuario" maxlength="45" placeholder="Ej. Juan Carlos" autocomplete="given-name" required></div>
+          </div>
+          <div class="field-grid">
+            <div class="field-group">
+              <label for="apePaterno">Apellido paterno</label>
+              <input id="apePaterno" name="apePaterno" maxlength="45" placeholder="Ej. Mendoza" autocomplete="family-name" required>
+            </div>
+            <div class="field-group">
+              <label for="apeMaterno">Apellido materno</label>
+              <input id="apeMaterno" name="apeMaterno" maxlength="45" placeholder="Ej. Castro" required>
+            </div>
+          </div>
+          <div class="field-grid">
+            <div class="field-group">
+              <label for="dni">DNI <span class="field-hint" id="dniCount">0/8 dígitos</span></label>
+              <div class="input-wrap"><span class="input-icon">▣</span><input id="dni" name="dni" maxlength="8" inputmode="numeric" placeholder="74839201" autocomplete="off" required></div>
+            </div>
+            <div class="field-group">
+              <label for="celular">Número de celular</label>
+              <div class="input-wrap"><span class="input-icon phone-prefix">🇵🇪 +51</span><input id="celular" name="celular" maxlength="9" inputmode="numeric" placeholder="987 654 321" autocomplete="tel-national" required></div>
+            </div>
+          </div>
+          <div class="field-group password-group">
+            <label for="clave">Contraseña</label>
+            <div class="input-wrap"><span class="input-icon">♙</span><input id="clave" name="clave" type="password" minlength="6" placeholder="Mínimo 8 caracteres (letras y números)" autocomplete="new-password" required><button class="toggle-password" type="button" id="togglePassword" aria-label="Mostrar contraseña">◎</button></div>
+            <div class="password-meter"><span></span><span></span><span></span></div>
+            <div class="password-hint"><span>Seguridad de la clave</span><span>◈ 8+ car. con números</span></div>
+          </div>
+          <label class="terms-check"><input type="checkbox" id="aceptaTerminos"><span>Acepto los <a href="#soporte">Términos del Servicio</a> y la <a href="#soporte">Política de Privacidad</a> de transporte de Piura.</span></label>
+          <button class="submit-button" id="btnRegistrar" type="submit">Registrarme <span>→</span></button>
+          <div id="msg" class="msg" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="security-note"><span>♢</span> Tus datos están protegidos por la <strong>Municipalidad Provincial de Piura / SIT Piura</strong></div>
+        <div class="form-bottom">¿Ya tienes cuenta? <a href="/index.html">Inicia sesión ›</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="soporte">
+    <span>© 2026 SmartPass Piura. Sistema Integrado de Transporte Metropolitano. Todos los derechos reservados.</span>
+    <nav><a href="#soporte">Privacidad</a><a href="#soporte">Condiciones de Uso</a><a href="#soporte">Libro de Reclamaciones</a><a href="#soporte">Contacto</a></nav>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script>
+    const dniInput = document.getElementById('dni');
+    const celularInput = document.getElementById('celular');
+    const claveInput = document.getElementById('clave');
+    dniInput.addEventListener('input', () => {
+      dniInput.value = dniInput.value.replace(/\\D/g, '').slice(0, 8);
+      document.getElementById('dniCount').textContent = `${dniInput.value.length}/8 dígitos`;
+    });
+    celularInput.addEventListener('input', () => celularInput.value = celularInput.value.replace(/\\D/g, '').slice(0, 9));
+    document.getElementById('togglePassword').addEventListener('click', () => {
+      const visible = claveInput.type === 'password';
+      claveInput.type = visible ? 'text' : 'password';
+      document.getElementById('togglePassword').textContent = visible ? '◉' : '◎';
+    });
+    document.getElementById('registroForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!document.getElementById('aceptaTerminos').checked) {
+        mostrarMensaje('msg', 'Debes aceptar los términos y la política de privacidad.', 'error');
+        return;
+      }
+      if (dniInput.value.length !== 8 || celularInput.value.length !== 9) {
+        mostrarMensaje('msg', 'Verifica que el DNI tenga 8 dígitos y el celular 9.', 'error');
+        return;
+      }
+      const campos = ['nomUsuario', 'apePaterno', 'apeMaterno', 'dni', 'celular', 'clave'];
+      const cuerpo = {};
+      campos.forEach(c => cuerpo[c] = document.getElementById(c).value.trim());
+      const boton = document.getElementById('btnRegistrar');
+      boton.disabled = true;
+      boton.innerHTML = 'Creando cuenta…';
+      try {
+        await api('/api/auth/registro', { method: 'POST', body: JSON.stringify(cuerpo) });
+        mostrarMensaje('msg', 'Registro exitoso. Ya puedes iniciar sesión.', 'ok');
+        setTimeout(() => window.location.href = '/index.html', 1500);
+      } catch (e) {
+        mostrarMensaje('msg', e.message, 'error');
+        boton.disabled = false;
+        boton.innerHTML = 'Registrarme <span>→</span>';
+      }
+    });
+  </script>
+</body>
+</html>

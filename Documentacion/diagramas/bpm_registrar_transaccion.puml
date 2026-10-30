@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+|Sistema|
+start
+:Recibe el pago aprobado
+(pasajero, cobrador, unidad y monto);
+:Asigna la fecha y la hora
+de la operación;
+:Guarda la transacción
+en la base de datos;
+|Pasajero|
+:Solicita consultar su
+historial de viajes;
+|Sistema|
+:Recupera las transacciones
+del pasajero;
+:Obtiene el saldo disponible;
+|Pasajero|
+:Visualiza su historial de
+viajes y su saldo;
+stop
+@enduml

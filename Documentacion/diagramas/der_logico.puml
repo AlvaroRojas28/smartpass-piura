@@ -1,0 +1,88 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+hide circle
+skinparam linetype ortho
+
+entity "Usuario" as usuario {
+  * idUsuario : INT <<PK>>
+  --
+  nomUsuario : VARCHAR(45)
+  apePaterno : VARCHAR(45)
+  apeMaterno : VARCHAR(45)
+  dni : VARCHAR(8)
+  celular : VARCHAR(9)
+  clave : VARCHAR(150)
+  saldoActual : DECIMAL(8,2)
+  codigoQR : VARCHAR(150)
+  estado : INT
+  fecCreacion : DATE
+  fecModificacion : DATE
+}
+entity "Perfil" as perfil {
+  * idPerfil : INT <<PK>>
+  --
+  nomPerfil : VARCHAR(45)
+  estado : INT
+}
+entity "Empleado" as empleado {
+  * idEmpleado : INT <<PK>>
+  --
+  # idPerfil : INT <<FK>>
+  nom : VARCHAR(55)
+  apePaterno : VARCHAR(45)
+  apeMaterno : VARCHAR(45)
+  dni : VARCHAR(8)
+  clave : VARCHAR(150)
+  fecNac : DATE
+  direccion : VARCHAR(150)
+  estado : INT
+  fecCreacion : DATE
+  fecModificacion : DATE
+}
+entity "Ruta" as ruta {
+  * idRuta : INT <<PK>>
+  --
+  nomRuta : VARCHAR(60)
+  origen : VARCHAR(60)
+  destino : VARCHAR(60)
+  estado : INT
+}
+entity "Unidad" as unidad {
+  * idUnidad : INT <<PK>>
+  --
+  # idRuta : INT <<FK>>
+  placa : VARCHAR(10)
+  nomUnidad : VARCHAR(45)
+  capacidad : INT
+  estado : INT
+}
+entity "Recarga" as recarga {
+  * idRecarga : INT <<PK>>
+  --
+  # idUsuario : INT <<FK>>
+  monto : DECIMAL(8,2)
+  metodoSimulado : VARCHAR(30)
+  estado : INT
+  fecRecarga : DATE
+}
+entity "Transaccion" as transaccion {
+  * idTransaccion : INT <<PK>>
+  --
+  # idUsuario : INT <<FK>>
+  # idEmpleado : INT <<FK>>
+  # idUnidad : INT <<FK>>
+  monto : DECIMAL(8,2)
+  fecTransaccion : DATE
+  horaTransaccion : TIME
+  estado : INT
+}
+
+usuario ||--o{ recarga : "recarga"
+usuario ||--o{ transaccion : "realiza"
+empleado ||--o{ transaccion : "valida"
+unidad ||--o{ transaccion : "registra"
+ruta ||--o{ unidad : "tiene"
+perfil ||--o{ empleado : "asigna"
+@enduml

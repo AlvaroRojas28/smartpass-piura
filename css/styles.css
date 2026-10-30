@@ -1,0 +1,163 @@
+/* =========================================================
+   SMARTPASS PIURA — Sistema visual
+   Paleta institucional, componentes compartidos y registro
+   ========================================================= */
+:root {
+  --blue-950:#102b78;
+  --blue-900:#173da8;
+  --blue-800:#1d49bd;
+  --blue-700:#2456d4;
+  --blue-600:#3272ed;
+  --blue-100:#eaf1ff;
+  --ink:#171b27;
+  --muted:#697184;
+  --line:#e4e8f0;
+  --surface:#ffffff;
+  --page:#f1f4f9;
+  --field:#f1f3f6;
+  --success:#16834b;
+  --danger:#c13d45;
+  --radius:14px;
+  --shadow:0 14px 34px rgba(17,35,77,.12),0 3px 8px rgba(17,35,77,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--page);color:var(--ink);font-size:14px}
+a{color:var(--blue-700);text-decoration:none}
+a:hover{text-decoration:underline}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.site-header{height:64px;padding:0 3.1%;display:flex;align-items:center;gap:18px;background:#fff;border-bottom:1px solid #e8ebf1;color:#30384a}
+.brand-mini{display:flex;align-items:center;gap:9px;color:var(--blue-900);line-height:1.05;white-space:nowrap}
+.brand-mini:hover{text-decoration:none}
+.brand-mini strong{display:block;font-size:14px;font-weight:800;letter-spacing:-.45px}
+.brand-mini small{display:block;font-size:9px;font-weight:700;letter-spacing:.9px}
+.brand-symbol{width:34px;height:34px;border-radius:10px;background:#eff5ff;color:var(--blue-700);display:grid;place-items:center;font-size:11px;font-weight:800;border:1px solid #dce8ff}
+.municipal-tag{font-size:11px;color:#596174;background:#f2f4f8;border-radius:20px;padding:7px 12px;white-space:nowrap}
+.top-nav{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:11px}
+.top-nav a{color:#42495a;white-space:nowrap}
+.language{padding:6px 8px;background:#f3f5f8;border-radius:6px;white-space:nowrap}
+.top-nav .login-link{color:var(--blue-900);font-weight:700;border:1px solid #d5e0fa;padding:7px 12px;border-radius:7px}
+.auth-shell{width:min(1320px,calc(100% - 72px));min-height:calc(100vh - 112px);margin:36px auto;display:grid;grid-template-columns:minmax(340px,.86fr) minmax(480px,1.14fr);background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+.auth-aside{position:relative;overflow:hidden;background:linear-gradient(145deg,#102d88 0%,#1d4db5 57%,#0873a9 100%);color:#fff;padding:42px 9%;display:flex;align-items:center}
+.auth-aside:before,.auth-aside:after{content:"";position:absolute;inset:0;pointer-events:none}
+.auth-aside:before{opacity:.22;background-image:radial-gradient(rgba(255,255,255,.48) .8px,transparent .8px);background-size:18px 18px}
+.auth-aside:after{inset:auto -110px -180px auto;width:390px;height:390px;border:1px solid rgba(255,255,255,.12);border-radius:50%;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 75px rgba(255,255,255,.025)}
+.aside-content{position:relative;z-index:1;width:100%;max-width:470px;margin:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);border-radius:20px;color:#e3efff;font-size:10px;font-weight:600;letter-spacing:.2px}
+.eyebrow-dot{width:7px;height:7px;background:#51d5df;border-radius:50%;box-shadow:0 0 0 3px rgba(81,213,223,.15)}
+.brand-lockup{display:flex;align-items:center;gap:13px;margin:25px 0 21px}
+.brand-symbol-large{width:48px;height:48px;border-radius:13px;background:#fff;color:var(--blue-800);font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.brand-lockup strong{display:block;font-size:19px;letter-spacing:-.6px}
+.brand-lockup small{display:block;margin-top:3px;color:#c6d8ff;font-size:10px}
+.auth-aside h1{max-width:440px;margin:0 0 10px;font-size:clamp(24px,2.35vw,32px);line-height:1.18;letter-spacing:-1.1px;font-weight:750}
+.aside-intro{max-width:440px;margin:0;color:#d1e0ff;font-size:12px;line-height:1.75}
+.benefit-list{display:grid;gap:11px;margin-top:24px}
+.benefit-card{display:flex;align-items:flex-start;gap:12px;padding:13px 14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.105);border-radius:13px;backdrop-filter:blur(5px)}
+.benefit-icon{flex:0 0 28px;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(66,205,235,.2);color:#8eeaff;font-size:17px}
+.benefit-card strong{display:block;font-size:11px;font-weight:700;margin:1px 0 3px}
+.benefit-card p{margin:0;color:#c7d9ff;font-size:10px;line-height:1.5}
+.aside-footer{display:flex;justify-content:space-between;gap:10px;margin-top:24px;padding-top:17px;border-top:1px solid rgba(255,255,255,.17);color:#d5e4ff;font-size:10px}
+.aside-footer strong{color:#fff;font-weight:600;white-space:nowrap}
+.auth-form-panel{padding:44px clamp(34px,5vw,76px);display:flex;align-items:center;justify-content:center}
+.form-wrap{width:100%;max-width:620px}
+.form-kicker{font-size:10px;font-weight:700;color:var(--blue-700);letter-spacing:.3px;margin-bottom:8px}
+.form-wrap h2{font-size:25px;line-height:1.2;letter-spacing:-.9px;margin:0 0 5px;font-weight:750}
+.form-description{margin:0 0 23px;color:#697184;font-size:11px;line-height:1.6}
+.field-group{min-width:0;margin-bottom:13px}
+.field-group label{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px;color:#41495a;font-size:10px;font-weight:700}
+.field-hint{color:#9ba2b0;font-size:9px;font-weight:500}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field-group input,.field-group select{width:100%;height:43px;border:1px solid transparent;border-radius:10px;background:var(--field);padding:0 13px;color:#242b3a;outline:none;font-size:11px;transition:border-color .2s,box-shadow .2s,background .2s}
+.field-group input::placeholder{color:#929aaa}
+.field-group input:focus,.field-group select:focus{background:#fff;border-color:#9bb8ff;box-shadow:0 0 0 3px rgba(50,114,237,.1)}
+.input-wrap{position:relative}
+.input-wrap input{padding-left:39px}
+.input-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#687287;font-size:15px;z-index:1;pointer-events:none}
+.phone-prefix{font-size:10px;font-weight:700;color:#50596b;background:#e4e8ee;padding:4px 6px;border-radius:5px;left:8px}
+.input-wrap:has(.phone-prefix) input{padding-left:65px}
+.toggle-password{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#5c6577;font-size:17px;padding:4px}
+.password-group{margin-bottom:13px}
+.password-meter{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:7px}
+.password-meter span{height:4px;border-radius:5px;background:#e1e5eb}
+.password-hint{display:flex;justify-content:space-between;margin-top:5px;color:#9299a7;font-size:9px}
+.terms-check{display:flex;align-items:flex-start;gap:9px;margin:17px 0 15px;color:#656d7c;font-size:10px;line-height:1.55}
+.terms-check input{width:13px;height:13px;margin:1px 0 0;accent-color:var(--blue-700);flex:0 0 auto}
+.terms-check a{font-weight:600}
+.submit-button{width:100%;height:45px;border:0;border-radius:10px;background:linear-gradient(100deg,#2147b5,#1c43b2);color:#fff;font-size:11px;font-weight:700;box-shadow:0 4px 9px rgba(29,67,178,.18);transition:transform .2s,box-shadow .2s,background .2s}
+.submit-button span{font-size:17px;margin-left:5px;vertical-align:-1px}
+.submit-button:hover{background:linear-gradient(100deg,#173b9e,#173b9e);box-shadow:0 7px 14px rgba(29,67,178,.23);transform:translateY(-1px)}
+.submit-button:disabled{opacity:.7;cursor:wait;transform:none}
+.security-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:13px;padding:12px 10px;background:#f3f5f8;border:1px solid #e8ebf0;border-radius:10px;color:#727b8b;font-size:9px;text-align:center}
+.security-note>span{font-size:15px;color:var(--blue-700)}
+.security-note strong{color:#50596a;font-weight:700}
+.form-bottom{display:flex;justify-content:center;gap:6px;margin-top:20px;padding-top:17px;border-top:1px solid #eceff4;color:#7a8190;font-size:10px}
+.form-bottom a{font-weight:700}
+.site-footer{min-height:48px;padding:12px 3%;display:flex;align-items:center;justify-content:space-between;gap:15px;background:#fff;color:#9399a6;font-size:9px}
+.site-footer nav{display:flex;gap:18px;flex-wrap:wrap}
+.site-footer a{color:#7e8695}
+/* Mensajes y elementos funcionales compartidos con los módulos */
+.msg{display:none;margin-top:10px;padding:11px 13px;border-radius:8px;font-size:12px}
+.msg.ok{display:block;background:#e8f7ee;color:var(--success)}
+.msg.error{display:block;background:#fff0f0;color:var(--danger)}
+/* Estilos generales para inicio, pasajero, cobrador y administración */
+body:not(.auth-page)>header{background:var(--blue-950);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:0 2px 10px rgba(16,43,120,.14)}
+body:not(.auth-page)>header h1{font-size:17px;margin:0;font-weight:700}
+body:not(.auth-page)>header button{background:transparent;border:1px solid rgba(255,255,255,.65);color:#fff;border-radius:8px;padding:8px 13px}
+body:not(.auth-page)>main{width:min(1050px,calc(100% - 32px));margin:25px auto;padding:0}
+.tarjeta{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:0 3px 12px rgba(20,35,70,.04)}
+.tarjeta h2{margin:0 0 16px;font-size:17px;color:var(--blue-950);letter-spacing:-.3px}
+body:not(.auth-page) label{display:block;font-size:12px;font-weight:600;color:#424b5c;margin:10px 0 6px}
+body:not(.auth-page) input,body:not(.auth-page) select{width:100%;min-height:42px;padding:10px 12px;border:1px solid #dfe4ec;border-radius:8px;background:#fff;font-size:13px;outline:none}
+body:not(.auth-page) input:focus,body:not(.auth-page) select:focus{border-color:#8eafff;box-shadow:0 0 0 3px rgba(50,114,237,.1)}
+button.principal{margin-top:14px;width:100%;padding:12px 15px;background:var(--blue-800);color:#fff;border:0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s}
+button.principal:hover{background:var(--blue-950)}
+.saldo{font-size:32px;font-weight:800;color:var(--blue-950)}
+.qr-caja{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+table{width:100%;border-collapse:collapse;font-size:12px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:12px;text-align:left}
+th{background:#f5f7fb;color:#4a5365;font-weight:700}
+.fila{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.resultado{text-align:center;padding:18px;border-radius:10px;font-size:18px;font-weight:700;display:none}
+.resultado.ok{background:#e8f7ee;color:var(--success);display:block}
+.resultado.error{background:#fff0f0;color:var(--danger);display:block}
+.resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.resumen div{background:#f5f7fb;border:1px solid #edf0f5;border-radius:10px;padding:16px;text-align:center;color:#667084;font-size:12px}
+.resumen strong{display:block;font-size:23px;color:var(--blue-950);margin-bottom:4px}
+nav.tabs{display:flex;gap:8px;margin-bottom:12px}
+nav.tabs button{flex:1;padding:11px;border:1px solid var(--line);background:#f7f8fb;border-radius:8px;color:#525c70;font-weight:600}
+nav.tabs button.activa{background:var(--blue-800);color:#fff;border-color:var(--blue-800)}
+@media(max-width:1000px){
+ .auth-shell{width:calc(100% - 36px);grid-template-columns:minmax(290px,.8fr) minmax(420px,1.2fr);margin:24px auto}
+ .auth-aside{padding:32px 7%}
+ .auth-form-panel{padding:36px 30px}
+ .top-nav{gap:12px}
+ .top-nav>a:not(.login-link){display:none}
+}
+@media(max-width:720px){
+ .site-header{height:58px;padding:0 18px}
+ .municipal-tag{display:none}
+ .top-nav{gap:9px}
+ .language{font-size:10px}
+ .auth-shell{width:calc(100% - 24px);margin:14px auto;display:flex;flex-direction:column;border-radius:15px}
+ .auth-aside{padding:28px 25px}
+ .auth-aside h1{font-size:25px}
+ .brand-lockup{margin:18px 0}
+ .benefit-list{grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
+ .benefit-card{padding:10px;gap:8px}
+ .benefit-card p{font-size:9px}
+ .benefit-icon{width:25px;height:25px;flex-basis:25px}
+ .aside-footer{margin-top:17px}
+ .auth-form-panel{padding:30px 22px}
+ .form-wrap h2{font-size:23px}
+ .site-footer{align-items:flex-start;flex-direction:column;padding:14px 18px;line-height:1.5}
+ .site-footer nav{gap:12px}
+}
+@media(max-width:420px){
+ .field-grid{grid-template-columns:1fr;gap:0}
+ .benefit-list{grid-template-columns:1fr}
+ .auth-aside{padding:25px 21px}
+ .auth-form-panel{padding:27px 18px}
+ .form-description{margin-bottom:18px}
+ .form-bottom{flex-wrap:wrap}
+}

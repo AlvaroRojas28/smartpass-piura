@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+|Administrador|
+start
+:Inicia sesión en el
+panel administrativo;
+:Selecciona el periodo,
+la unidad y la ruta;
+|Sistema|
+:Valida los filtros ingresados;
+if (¿Filtros válidos?) then (no)
+  |Administrador|
+  :Recibe mensaje de error;
+  stop
+else (sí)
+  |Sistema|
+  :Consulta las transacciones
+  del periodo;
+  :Calcula la recaudación total
+  y el número de pasajeros;
+  |Administrador|
+  :Visualiza el reporte
+  de recaudación;
+endif
+stop
+@enduml

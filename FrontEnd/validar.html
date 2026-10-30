@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validación de pago · SmartPass Piura</title>
+  <link rel="stylesheet" href="/FrontEnd/css/styles.css">
+</head>
+<body>
+  <header><h1>Módulo de validación · <span id="usuarioActual"></span></h1><button onclick="cerrarSesion()">Salir</button></header>
+  <main>
+    <div class="tarjeta">
+      <h2>Unidad en servicio</h2>
+      <select id="unidad"></select>
+    </div>
+    <div class="tarjeta">
+      <h2>Escanear código QR del pasajero</h2>
+      <div id="lector" style="width:100%;max-width:420px;margin:0 auto;"></div>
+      <button class="principal" id="btnCamara" type="button">Activar cámara</button>
+      <label for="codigoManual">Ingreso manual del código (si la cámara no está disponible)</label>
+      <input id="codigoManual" autocomplete="off">
+      <button class="principal" id="btnManual" type="button">Validar código</button>
+    </div>
+    <div id="resultado" class="resultado"></div>
+    <p style="text-align:center;"><small id="detalle"></small></p>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/validar.js"></script>
+</body>
+</html>

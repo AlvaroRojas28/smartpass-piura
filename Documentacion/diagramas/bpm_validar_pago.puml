@@ -1,0 +1,44 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+|Pasajero|
+start
+:Muestra su código QR
+al abordar la unidad;
+|Cobrador|
+:Inicia sesión en el
+módulo de validación;
+:Escanea el código QR
+con su dispositivo;
+|Sistema|
+:Identifica al pasajero
+mediante el código QR;
+if (¿Código QR válido?) then (no)
+  |Cobrador|
+  :Visualiza el mensaje
+  "Código QR no válido";
+  stop
+else (sí)
+  |Sistema|
+  :Consulta el saldo
+  del pasajero;
+  if (¿Saldo suficiente?) then (no)
+    |Cobrador|
+    :Visualiza el mensaje
+    "Saldo insuficiente";
+    stop
+  else (sí)
+    |Sistema|
+    :Descuenta la tarifa
+    del saldo;
+    :Registra la transacción;
+    |Cobrador|
+    :Visualiza el mensaje
+    "Pago aprobado";
+    |Pasajero|
+    :Aborda la unidad;
+  endif
+endif
+stop
+@enduml

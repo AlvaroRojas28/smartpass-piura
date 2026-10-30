@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+actor Administrador
+participant "Vista: Panel Administrativo" as Vista
+participant "Controlador: ReporteController" as Controlador
+participant "Servicio: ReporteService" as Servicio
+participant "DAO: TransaccionDAO" as TDAO
+participant "DAO: UsuarioDAO" as UDAO
+
+Administrador -> Vista : Selecciona periodo, unidad y ruta
+Vista -> Controlador : generarReporte(fechaInicio, fechaFin, idUnidad, idRuta)
+Controlador -> Servicio : construirReporteRecaudacion(filtros)
+Servicio -> TDAO : sumarRecaudacion(filtros)
+TDAO --> Servicio : recaudacionTotal
+Servicio -> TDAO : contarTransacciones(filtros)
+TDAO --> Servicio : totalTransacciones
+Servicio -> UDAO : contarPasajerosRegistrados()
+UDAO --> Servicio : totalPasajeros
+Servicio --> Controlador : reporte de recaudación
+Controlador --> Vista : reporte de recaudación
+Vista --> Administrador : muestra el reporte
+@enduml
